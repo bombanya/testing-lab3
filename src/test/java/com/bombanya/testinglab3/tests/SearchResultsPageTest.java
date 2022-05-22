@@ -29,7 +29,7 @@ class SearchResultsPageTest {
 
     @AfterEach
     void tearDown() {
-        //driver.quit();
+        driver.quit();
     }
 
     @Test

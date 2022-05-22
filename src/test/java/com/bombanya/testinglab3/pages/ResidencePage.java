@@ -34,7 +34,7 @@ public class ResidencePage {
     @FindBy(xpath = "//*[@data-room-name]")
     private List<WebElement> roomsTitles;
 
-    @FindBy(xpath = "//*[@class='hprt-reservation-cta']/button")
+    @FindBy(xpath = "(//*[@class='hprt-reservation-cta']/button)[last()]")
     private WebElement roomsSubmitter;
 
     @FindBy(xpath = "//*[contains(@class, 'hprt-table-cell -first')]")

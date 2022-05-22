@@ -33,6 +33,7 @@ class ResidencePageTest {
         ResidencePage residencePage = searchResultsPage.selectResidence(0);
         Thread.sleep(5000);
         residencePage.selectRoom(0, 2);
+        Thread.sleep(3000);
         residencePage.selectRoom(2, 1);
         String room1 = residencePage.getRoomsNames().get(0);
         String room2 = residencePage.getRoomsNames().get(2);
@@ -42,8 +43,8 @@ class ResidencePageTest {
         OrderDetailsPage orderDetailsPage = residencePage.submitRooms();
         if (room1.equals(room2)) assertTrue(orderDetailsPage.getRooms().get(0).contains("3 x " + room1));
         else {
-            assertTrue(orderDetailsPage.getRooms().get(0).contains("2 x " + room1));
-            assertTrue(orderDetailsPage.getRooms().get(1).contains("1 x " + room2));
+            assertTrue(orderDetailsPage.getRooms().stream().anyMatch(room -> room.contains("2 x " + room1)));
+            assertTrue(orderDetailsPage.getRooms().stream().anyMatch(room -> room.contains("1 x " + room2)));
         }
         assertEquals(room1Price * 2 + room2Price, orderDetailsPage.getPrice());
     }
